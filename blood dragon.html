@@ -1,0 +1,1374 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Blood Dragon</title>
+
+    <style>
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        /* ===============================
+           MAIN BACKGROUND
+        =============================== */
+
+        body {
+            min-height: 100vh;
+            overflow: hidden;
+            font-family: "Segoe UI", Arial, sans-serif;
+            color: white;
+
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+
+            position: relative;
+
+            background:
+                radial-gradient(
+                    circle at 20% 20%,
+                    #5c0000,
+                    transparent 25%
+                ),
+
+                radial-gradient(
+                    circle at 80% 80%,
+                    #380000,
+                    transparent 30%
+                ),
+
+                linear-gradient(
+                    135deg,
+                    #020000,
+                    #130000,
+                    #050000,
+                    #240000,
+                    #010000
+                );
+
+            background-size: 400% 400%;
+
+            animation: bloodBackground 15s ease infinite;
+        }
+
+
+        @keyframes bloodBackground {
+
+            0% {
+                background-position: 0% 50%;
+            }
+
+            50% {
+                background-position: 100% 50%;
+            }
+
+            100% {
+                background-position: 0% 50%;
+            }
+
+        }
+
+
+        /* ===============================
+           RED ATMOSPHERIC GLOW
+        =============================== */
+
+        body::before {
+
+            content: "";
+
+            position: fixed;
+
+            width: 500px;
+            height: 500px;
+
+            border-radius: 50%;
+
+            background: #8b0000;
+
+            filter: blur(150px);
+
+            opacity: 0.14;
+
+            top: -180px;
+            left: -150px;
+
+            animation: bloodGlow 10s infinite alternate;
+
+            z-index: -2;
+        }
+
+
+        @keyframes bloodGlow {
+
+            from {
+                transform: translate(0, 0);
+            }
+
+            to {
+                transform: translate(350px, 280px);
+            }
+
+        }
+
+
+        /* ===============================
+           BLOOD MOON
+        =============================== */
+
+        .moon {
+
+            position: fixed;
+
+            top: 35px;
+            right: 50px;
+
+            width: 70px;
+            height: 70px;
+
+            border-radius: 50%;
+
+            background:
+                radial-gradient(
+                    circle at 35% 35%,
+                    #ff5a5a,
+                    #a00000 55%,
+                    #250000 100%
+                );
+
+            box-shadow:
+                0 0 20px #ff0000,
+                0 0 60px rgba(255, 0, 0, 0.45);
+
+            z-index: 1;
+
+            animation: moonPulse 4s ease-in-out infinite alternate;
+        }
+
+
+        @keyframes moonPulse {
+
+            from {
+                box-shadow:
+                    0 0 15px #ff0000,
+                    0 0 40px rgba(255,0,0,.3);
+            }
+
+            to {
+                box-shadow:
+                    0 0 25px #ff0000,
+                    0 0 80px rgba(255,0,0,.6);
+            }
+
+        }
+
+
+        /* ===============================
+           REALISTIC DRAGON
+        =============================== */
+
+        .dragon {
+
+            position: fixed;
+
+            width: 430px;
+            height: 250px;
+
+            left: -500px;
+            top: 18%;
+
+            z-index: 4;
+
+            pointer-events: none;
+
+            filter:
+                drop-shadow(0 0 8px rgba(255,0,0,.8))
+                drop-shadow(0 0 30px rgba(100,0,0,.8));
+
+            animation: dragonFlight 18s linear infinite;
+        }
+
+
+        /* ===============================
+           DRAGON BODY MOVEMENT
+        =============================== */
+
+        .dragon-body {
+
+            transform-origin: 50% 55%;
+
+            animation:
+                dragonBreathing 2.8s ease-in-out infinite;
+        }
+
+
+        @keyframes dragonBreathing {
+
+            0% {
+                transform: scaleY(1);
+            }
+
+            50% {
+                transform: scaleY(1.035);
+            }
+
+            100% {
+                transform: scaleY(1);
+            }
+
+        }
+
+
+        /* ===============================
+           WINGS
+        =============================== */
+
+        .wing {
+
+            transform-origin: 250px 120px;
+
+            animation:
+                wingFlap 1.4s ease-in-out infinite;
+        }
+
+
+        .wing-back {
+
+            opacity: .55;
+
+            animation-delay: .08s;
+        }
+
+
+        @keyframes wingFlap {
+
+            0% {
+                transform: rotateX(0deg) rotateZ(0deg);
+            }
+
+            50% {
+                transform: rotateX(20deg) rotateZ(-4deg);
+            }
+
+            100% {
+                transform: rotateX(0deg) rotateZ(0deg);
+            }
+
+        }
+
+
+        /* ===============================
+           DRAGON FLIGHT
+        =============================== */
+
+        @keyframes dragonFlight {
+
+            0% {
+
+                left: -500px;
+                top: 22%;
+
+                transform:
+                    scale(.8)
+                    rotate(-4deg);
+            }
+
+
+            15% {
+
+                top: 15%;
+
+                transform:
+                    scale(.85)
+                    rotate(2deg);
+            }
+
+
+            30% {
+
+                top: 24%;
+
+                transform:
+                    scale(.9)
+                    rotate(-2deg);
+            }
+
+
+            45% {
+
+                top: 13%;
+
+                transform:
+                    scale(.95)
+                    rotate(3deg);
+            }
+
+
+            60% {
+
+                top: 22%;
+
+                transform:
+                    scale(1)
+                    rotate(-2deg);
+            }
+
+
+            75% {
+
+                top: 16%;
+
+                transform:
+                    scale(1.03)
+                    rotate(2deg);
+            }
+
+
+            100% {
+
+                left: 110%;
+
+                top: 20%;
+
+                transform:
+                    scale(1.08)
+                    rotate(0deg);
+            }
+
+        }
+
+
+        /* ===============================
+           DRAGON FIRE
+        =============================== */
+
+        .dragon-fire {
+
+            position: fixed;
+
+            left: -300px;
+            top: 27%;
+
+            width: 120px;
+            height: 18px;
+
+            z-index: 3;
+
+            opacity: 0;
+
+            filter:
+                blur(1px)
+                drop-shadow(0 0 12px #ff0000)
+                drop-shadow(0 0 25px #8b0000);
+
+            animation: fireFlight 18s linear infinite;
+        }
+
+
+        @keyframes fireFlight {
+
+            0% {
+                left: -300px;
+                top: 27%;
+                opacity: 0;
+            }
+
+            10% {
+                opacity: 1;
+            }
+
+            30% {
+                left: 30%;
+                top: 24%;
+            }
+
+            50% {
+                left: 55%;
+                top: 31%;
+            }
+
+            75% {
+                left: 80%;
+                top: 22%;
+            }
+
+            100% {
+                left: 110%;
+                top: 25%;
+                opacity: 0;
+            }
+
+        }
+
+
+        /* ===============================
+           FIRE PARTICLES
+        =============================== */
+
+        .fire-particle {
+
+            fill: #ff0000;
+
+            opacity: .9;
+
+            animation:
+                fireSpark 1s infinite alternate;
+        }
+
+
+        @keyframes fireSpark {
+
+            from {
+                opacity: .3;
+                transform: scale(.6);
+            }
+
+            to {
+                opacity: 1;
+                transform: scale(1.2);
+            }
+
+        }
+
+
+        /* ===============================
+           BLOOD DROPS
+        =============================== */
+
+        .blood {
+
+            position: fixed;
+
+            top: -20px;
+
+            width: 4px;
+            height: 14px;
+
+            background: #8b0000;
+
+            border-radius: 50%;
+
+            box-shadow:
+                0 0 8px #ff0000;
+
+            animation:
+                bloodFall linear infinite;
+
+            z-index: 1;
+
+            pointer-events: none;
+        }
+
+
+        @keyframes bloodFall {
+
+            0% {
+
+                transform:
+                    translateY(-20px)
+                    scaleY(.7);
+
+                opacity: 0;
+            }
+
+
+            10% {
+                opacity: .8;
+            }
+
+
+            90% {
+                opacity: .8;
+            }
+
+
+            100% {
+
+                transform:
+                    translateY(110vh)
+                    scaleY(1.5);
+
+                opacity: 0;
+            }
+
+        }
+
+
+        /* ===============================
+           INTRODUCTION
+        =============================== */
+
+        .intro {
+
+            margin-top: 80px;
+
+            padding: 15px 25px;
+
+            border-radius: 12px;
+
+            background:
+                rgba(40,0,0,.35);
+
+            border:
+                1px solid rgba(255,0,0,.3);
+
+            backdrop-filter:
+                blur(12px);
+
+            box-shadow:
+                0 10px 40px rgba(0,0,0,.6);
+
+            z-index: 5;
+
+            text-align: center;
+        }
+
+
+        /* ===============================
+           SMALL TITLE
+        =============================== */
+
+        .intro h1 {
+
+            font-size: 22px;
+
+            font-weight: 600;
+
+            letter-spacing: 1px;
+
+            color: #fff;
+
+            text-shadow:
+                0 0 8px rgba(255,0,0,.7);
+
+            animation:
+                titleGlow 3s infinite alternate;
+        }
+
+
+        @keyframes titleGlow {
+
+            from {
+                text-shadow:
+                    0 0 5px rgba(255,0,0,.3);
+            }
+
+            to {
+                text-shadow:
+                    0 0 18px rgba(255,0,0,.9);
+            }
+
+        }
+
+
+        /* ===============================
+           NAVIGATION
+        =============================== */
+
+        .nav-link {
+
+            display: block;
+
+            width: 220px;
+
+            padding: 11px;
+
+            margin-top: 10px;
+
+            text-align: center;
+
+            text-decoration: none;
+
+            color: #eee;
+
+            font-size: 14px;
+
+            font-weight: 600;
+
+            border-radius: 8px;
+
+            background:
+                rgba(35,0,0,.55);
+
+            border:
+                1px solid rgba(255,0,0,.25);
+
+            backdrop-filter:
+                blur(8px);
+
+            z-index: 5;
+
+            transition:
+                .3s ease;
+        }
+
+
+        .nav-link:hover {
+
+            background:
+                rgba(130,0,0,.65);
+
+            color: white;
+
+            transform:
+                translateY(-2px);
+
+            box-shadow:
+                0 0 15px rgba(255,0,0,.6);
+
+        }
+
+
+        /* ===============================
+           MOBILE
+        =============================== */
+
+        @media (max-width: 600px) {
+
+            .intro {
+
+                margin-top: 70px;
+
+                padding:
+                    13px 20px;
+            }
+
+
+            .intro h1 {
+
+                font-size: 19px;
+            }
+
+
+            .nav-link {
+
+                width: 200px;
+            }
+
+
+            .dragon {
+
+                width: 300px;
+                height: 180px;
+            }
+
+
+            .moon {
+
+                width: 48px;
+                height: 48px;
+
+                top: 20px;
+                right: 20px;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+    <!-- ===============================
+         BLOOD MOON
+    =============================== -->
+
+    <div class="moon"></div>
+
+
+    <!-- ===============================
+         REALISTIC CODED DRAGON
+    =============================== -->
+
+    <svg
+        class="dragon"
+        viewBox="0 0 500 280"
+        xmlns="http://www.w3.org/2000/svg">
+
+        <defs>
+
+            <linearGradient
+                id="dragonSkin"
+                x1="0"
+                y1="0"
+                x2="1"
+                y2="1">
+
+                <stop
+                    offset="0%"
+                    stop-color="#180000"/>
+
+                <stop
+                    offset="45%"
+                    stop-color="#520000"/>
+
+                <stop
+                    offset="75%"
+                    stop-color="#160000"/>
+
+                <stop
+                    offset="100%"
+                    stop-color="#030000"/>
+
+            </linearGradient>
+
+
+            <linearGradient
+                id="wingSkin"
+                x1="0"
+                y1="0"
+                x2="1"
+                y2="1">
+
+                <stop
+                    offset="0%"
+                    stop-color="#360000"/>
+
+                <stop
+                    offset="50%"
+                    stop-color="#100000"/>
+
+                <stop
+                    offset="100%"
+                    stop-color="#020000"/>
+
+            </linearGradient>
+
+
+            <radialGradient
+                id="eyeGlow">
+
+                <stop
+                    offset="0%"
+                    stop-color="#ffffff"/>
+
+                <stop
+                    offset="35%"
+                    stop-color="#ff3030"/>
+
+                <stop
+                    offset="100%"
+                    stop-color="#7a0000"/>
+
+            </radialGradient>
+
+        </defs>
+
+
+        <!-- =========================
+             BACK WING
+        ========================= -->
+
+        <g class="wing wing-back">
+
+            <path
+                d="
+                M245 125
+                C220 82 174 35 105 12
+                C135 48 145 70 152 90
+                C110 63 70 53 28 55
+                C70 80 95 103 115 126
+                C76 113 43 116 15 130
+                C85 142 145 148 205 155
+                Z
+                "
+                fill="url(#wingSkin)"
+                stroke="#260000"
+                stroke-width="4"
+            />
+
+        </g>
+
+
+        <!-- =========================
+             MAIN WING
+        ========================= -->
+
+        <g class="wing">
+
+            <path
+                d="
+                M250 126
+                C235 82 214 40 170 5
+                C225 25 270 55 295 83
+                C293 45 305 22 320 5
+                C326 48 323 77 316 103
+                C351 71 384 55 424 48
+                C397 79 373 101 350 121
+                C388 111 427 115 468 130
+                C415 143 365 151 320 153
+                C295 151 270 142 250 126
+                Z
+                "
+                fill="url(#wingSkin)"
+                stroke="#420000"
+                stroke-width="5"
+            />
+
+
+            <!-- wing bones -->
+
+            <path
+                d="M250 126 L170 5"
+                stroke="#690000"
+                stroke-width="3"
+                fill="none"
+            />
+
+            <path
+                d="M270 130 L320 5"
+                stroke="#690000"
+                stroke-width="3"
+                fill="none"
+            />
+
+            <path
+                d="M288 136 L424 48"
+                stroke="#690000"
+                stroke-width="3"
+                fill="none"
+            />
+
+            <path
+                d="M300 140 L468 130"
+                stroke="#690000"
+                stroke-width="3"
+                fill="none"
+            />
+
+        </g>
+
+
+        <!-- =========================
+             DRAGON BODY
+        ========================= -->
+
+        <g class="dragon-body">
+
+            <!-- tail -->
+
+            <path
+                d="
+                M270 155
+                C330 165 365 182 407 174
+                C440 168 460 180 483 195
+                C454 196 438 207 414 210
+                C356 217 320 192 260 178
+                Z
+                "
+                fill="url(#dragonSkin)"
+                stroke="#450000"
+                stroke-width="5"
+            />
+
+
+            <!-- tail spikes -->
+
+            <path
+                d="
+                M350 190 L363 174 L370 197
+                M375 202 L390 184 L394 207
+                M404 207 L423 191 L421 214
+                "
+                fill="#250000"
+                stroke="#5d0000"
+                stroke-width="3"
+            />
+
+
+            <!-- main torso -->
+
+            <path
+                d="
+                M170 122
+                C195 104 242 105 282 126
+                C312 142 324 166 306 184
+                C285 204 231 206 190 190
+                C151 174 140 142 170 122
+                Z
+                "
+                fill="url(#dragonSkin)"
+                stroke="#5b0000"
+                stroke-width="5"
+            />
+
+
+            <!-- neck -->
+
+            <path
+                d="
+                M175 139
+                C140 122 120 105 105 78
+                C91 55 94 38 110 25
+                C130 45 137 64 143 82
+                C151 103 172 111 194 121
+                Z
+                "
+                fill="url(#dragonSkin)"
+                stroke="#5b0000"
+                stroke-width="5"
+            />
+
+
+            <!-- head -->
+
+            <path
+                d="
+                M112 31
+                C91 19 66 22 49 35
+                L20 29
+                L37 48
+                L12 60
+                L45 64
+                C55 83 77 91 101 80
+                C117 73 126 56 122 42
+                Z
+                "
+                fill="url(#dragonSkin)"
+                stroke="#650000"
+                stroke-width="5"
+            />
+
+
+            <!-- horns -->
+
+            <path
+                d="
+                M70 31
+                L57 4
+                L84 24
+                Z
+
+                M91 30
+                L96 1
+                L108 31
+                Z
+                "
+                fill="#080000"
+                stroke="#520000"
+                stroke-width="3"
+            />
+
+
+            <!-- jaw -->
+
+            <path
+                d="
+                M38 65
+                C62 69 84 69 105 61
+                C91 85 60 91 40 76
+                Z
+                "
+                fill="#100000"
+                stroke="#4b0000"
+                stroke-width="3"
+            />
+
+
+            <!-- teeth -->
+
+            <path
+                d="
+                M50 70 L55 79 L60 70
+                M65 69 L70 78 L75 68
+                M81 66 L85 74 L90 63
+                "
+                fill="#eee"
+            />
+
+
+            <!-- eye -->
+
+            <ellipse
+                cx="76"
+                cy="43"
+                rx="9"
+                ry="6"
+                fill="url(#eyeGlow)"
+            />
+
+            <circle
+                cx="78"
+                cy="43"
+                r="2"
+                fill="#000"
+            />
+
+
+            <!-- nostril -->
+
+            <circle
+                cx="43"
+                cy="52"
+                r="3"
+                fill="#000"
+            />
+
+
+            <!-- neck spikes -->
+
+            <path
+                d="
+                M122 53 L139 43 L130 66
+                M131 72 L151 62 L139 84
+                M143 91 L163 82 L150 104
+                "
+                fill="#220000"
+                stroke="#640000"
+                stroke-width="3"
+            />
+
+
+            <!-- front leg -->
+
+            <path
+                d="
+                M205 170
+                C193 187 187 208 192 226
+                L179 243
+                L196 241
+                L207 226
+                L218 243
+                L228 237
+                L217 214
+                L230 179
+                Z
+                "
+                fill="#190000"
+                stroke="#550000"
+                stroke-width="5"
+            />
+
+
+            <!-- rear leg -->
+
+            <path
+                d="
+                M278 169
+                C291 184 300 204 296 221
+                L310 240
+                L297 239
+                L284 225
+                L273 242
+                L262 236
+                L274 215
+                L258 184
+                Z
+                "
+                fill="#190000"
+                stroke="#550000"
+                stroke-width="5"
+            />
+
+
+            <!-- claws -->
+
+            <path
+                d="
+                M178 243 L169 250
+                M195 241 L191 252
+                M218 243 L224 251
+
+                M296 239 L304 249
+                M280 240 L277 251
+                M262 236 L256 247
+                "
+                stroke="#b00000"
+                stroke-width="3"
+                fill="none"
+            />
+
+
+            <!-- body scales -->
+
+            <path
+                d="
+                M185 139
+                Q195 130 205 139
+                Q215 130 225 139
+                Q235 130 245 139
+                Q255 130 265 139
+                Q275 130 285 142
+
+                M177 154
+                Q187 145 197 154
+                Q207 145 217 154
+                Q227 145 237 154
+                Q247 145 257 154
+                Q267 145 277 154
+                Q287 145 297 156
+
+                M185 169
+                Q195 160 205 169
+                Q215 160 225 169
+                Q235 160 245 169
+                Q255 160 265 169
+                Q275 160 285 169
+                "
+                stroke="#720000"
+                stroke-width="2"
+                fill="none"
+                opacity=".7"
+            />
+
+        </g>
+
+    </svg>
+
+
+    <!-- ===============================
+         DRAGON FIRE
+    =============================== -->
+
+    <svg
+        class="dragon-fire"
+        viewBox="0 0 140 30"
+        xmlns="http://www.w3.org/2000/svg">
+
+        <path
+            d="
+            M5 15
+            C30 2 55 6 80 13
+            C100 19 118 14 138 4
+            C122 17 105 29 82 25
+            C55 21 35 19 5 15
+            Z
+            "
+            fill="#8b0000"
+        />
+
+        <circle
+            class="fire-particle"
+            cx="35"
+            cy="12"
+            r="4"
+        />
+
+        <circle
+            class="fire-particle"
+            cx="60"
+            cy="19"
+            r="3"
+        />
+
+        <circle
+            class="fire-particle"
+            cx="90"
+            cy="11"
+            r="4"
+        />
+
+    </svg>
+
+
+    <!-- ===============================
+         INTRODUCTION
+    =============================== -->
+
+    <div class="intro">
+
+        <h1>
+            Let's Give Introduction
+        </h1>
+
+    </div>
+
+
+    <!-- ===============================
+         NAVIGATION
+    =============================== -->
+
+    <a
+        class="nav-link"
+        href="home.html">
+
+        🏠 Home
+
+    </a>
+
+
+    <a
+        class="nav-link"
+        href="aboutme.html">
+
+        👨‍💻 About Me
+
+    </a>
+
+
+    <a
+        class="nav-link"
+        href="contactme.html">
+
+        📩 Contact Info
+
+    </a>
+
+
+    <!-- ===============================
+         JAVASCRIPT
+    =============================== -->
+
+    <script>
+
+        /* =================================
+           BLOOD DROPS
+        ================================= */
+
+        for (let i = 0; i < 50; i++) {
+
+            const drop =
+                document.createElement("div");
+
+            drop.className =
+                "blood";
+
+            drop.style.left =
+                Math.random() * 100 + "vw";
+
+            drop.style.animationDuration =
+                (3 + Math.random() * 6) + "s";
+
+            drop.style.animationDelay =
+                Math.random() * 5 + "s";
+
+            drop.style.width =
+                (2 + Math.random() * 4) + "px";
+
+            drop.style.height =
+                (8 + Math.random() * 14) + "px";
+
+            document.body.appendChild(drop);
+
+        }
+
+
+        /* =================================
+           BLOOD EXPLOSION ON CLICK
+        ================================= */
+
+        document.addEventListener(
+            "click",
+            function(event) {
+
+                for (let i = 0; i < 15; i++) {
+
+                    const particle =
+                        document.createElement("div");
+
+                    particle.style.position =
+                        "fixed";
+
+                    particle.style.left =
+                        event.clientX + "px";
+
+                    particle.style.top =
+                        event.clientY + "px";
+
+                    particle.style.width =
+                        "5px";
+
+                    particle.style.height =
+                        "5px";
+
+                    particle.style.borderRadius =
+                        "50%";
+
+                    particle.style.background =
+                        "#ff0000";
+
+                    particle.style.boxShadow =
+                        "0 0 10px #ff0000";
+
+                    particle.style.pointerEvents =
+                        "none";
+
+                    particle.style.zIndex =
+                        "100";
+
+
+                    document.body.appendChild(
+                        particle
+                    );
+
+
+                    const angle =
+                        Math.random()
+                        * Math.PI
+                        * 2;
+
+
+                    const distance =
+                        Math.random()
+                        * 100 + 30;
+
+
+                    const x =
+                        Math.cos(angle)
+                        * distance;
+
+
+                    const y =
+                        Math.sin(angle)
+                        * distance;
+
+
+                    particle.animate(
+
+                        [
+
+                            {
+                                transform:
+                                    "translate(0,0) scale(1)",
+
+                                opacity: 1
+                            },
+
+                            {
+
+                                transform:
+                                    `translate(${x}px,${y}px) scale(0)`,
+
+                                opacity: 0
+                            }
+
+                        ],
+
+                        {
+
+                            duration: 700,
+
+                            easing:
+                                "ease-out"
+
+                        }
+
+                    );
+
+
+                    setTimeout(
+                        () => particle.remove(),
+                        800
+                    );
+
+                }
+
+            }
+        );
+
+    </script>
+
+
+</body>
+
+</html>
